@@ -1,0 +1,5 @@
+@EndUserText.label: 'Travel view for unmanaged'
+define service ZUI_BC_C_TRAVEL_U {
+  expose ZBC_C_TRAVEL_U  as Travel;
+  expose ZBC_C_BOOKING_U as Booking;
+}

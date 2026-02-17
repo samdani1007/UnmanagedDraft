@@ -1,0 +1,26 @@
+projection;
+strict ( 2 );
+use draft;
+define behavior for ZBC_C_TRAVEL_U alias Travel
+{
+  use create;
+  use update;
+  use delete;
+
+
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+ use association Booking { create; with draft;}
+}
+
+define behavior for ZBC_C_BOOKING_U alias Booking
+{
+  use update;
+  use delete;
+
+  use association Travel { with draft; }
+  }

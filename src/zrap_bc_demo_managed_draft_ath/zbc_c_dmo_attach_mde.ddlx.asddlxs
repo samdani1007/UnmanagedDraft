@@ -1,0 +1,48 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: {
+  headerInfo: { typeName: 'Attachment',
+                typeNamePlural: 'Attachments',
+                title: { type: #STANDARD,
+                         value: 'TravelId' } } }
+annotate entity ZBC_C_DMO_ATTACH
+    with 
+{
+     @UI.facet: [ { 
+                 purpose:       #STANDARD,
+                 type:          #IDENTIFICATION_REFERENCE,
+                 label:         'Attachments',
+                 position:      10 } ]
+   
+    TravelId;
+     @UI: { lineItem:       [ { position: 20,
+                             importance: #HIGH } ],
+         identification: [ { position: 20 } ] }
+    Comments;
+     @UI: { lineItem:       [ { position: 30,
+                             importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
+    AttachId;
+     @UI: { lineItem:       [ { position: 40,
+                             importance: #HIGH } ],
+         identification: [ { position: 40 } ] }
+    Filetype;
+     @UI: { lineItem:       [ { position: 50 } ],
+         identification: [ { position: 50 } ] }
+    Filename;
+         @UI: { lineItem:       [ { position: 60 } ],
+         identification: [ { position: 60 } ] }
+    LocalCreatedBy;
+         @UI: { lineItem:       [ { position: 70 } ],
+         identification: [ { position: 70 } ] }
+    LocalCreatedAt;
+         @UI: { lineItem:       [ { position: 80 } ],
+         identification: [ { position: 80 } ] }
+    LocalLastChangedBy;
+         @UI: { lineItem:       [ { position: 90 } ],
+         identification: [ { position: 90 } ] }
+    LocalLastChangedAt;
+         @UI: { lineItem:       [ { position: 100 } ],
+         identification: [ { position: 100 } ] }
+    LastChangedAt;    
+}

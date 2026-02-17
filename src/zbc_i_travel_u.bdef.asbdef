@@ -1,0 +1,73 @@
+unmanaged implementation in class zbp_bc_i_travel_u unique;
+strict ( 2 );
+with draft;
+define behavior for ZBC_I_TRAVEL_U alias Travel
+//persistent table /dmo/travel
+draft table zbc_dmo_travel_d
+late numbering
+lock master
+total etag lastchangedat
+authorization master ( global, instance )
+etag master lastchangedat
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) TravelID;
+  association Booking { create ( features : instance ); with draft;}
+
+// internal action reCalcTotalPrice;
+//determination calculateTotalPrice on modify { create; field BookingFee, CurrencyCode; }
+ mapping for /dmo/travel control zbc_s_travel_indx
+    {
+      AgencyID      = agency_id;
+      BeginDate     = begin_date;
+      BookingFee    = booking_fee;
+      CurrencyCode  = currency_code;
+      CustomerID    = customer_id;
+      EndDate       = end_date;
+      LastChangedAt = lastchangedat;
+      Memo          = description;
+      Status        = status;
+      TotalPrice    = total_price;
+      TravelID      = travel_id;
+    }
+
+
+   draft action Resume;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+
+  draft determine action Prepare;
+
+}
+
+
+define behavior for ZBC_I_BOOKING_U alias Booking
+draft table ZBC_DMO_BOOK_D
+late numbering
+lock dependent by Travel
+authorization dependent by Travel
+etag dependent by Travel
+{
+
+  update;
+  delete;
+  field ( readonly ) TravelID, BookingID;
+  association Travel { with draft; }
+
+mapping for /dmo/booking control zbc_s_booking_indx
+    {
+      AirlineID    = carrier_id;
+      BookingDate  = booking_date;
+      BookingID    = booking_id;
+      ConnectionID = connection_id;
+      CurrencyCode = currency_code;
+      CustomerID   = customer_id;
+      FlightDate   = flight_date;
+      FlightPrice  = flight_price;
+      TravelID     = travel_id;
+    }
+
+}

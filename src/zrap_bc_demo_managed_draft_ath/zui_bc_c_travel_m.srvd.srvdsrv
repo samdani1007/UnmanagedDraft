@@ -1,0 +1,10 @@
+@EndUserText.label: 'service definition for travel'
+define service ZUI_BC_C_TRAVEL_M {
+  expose ZBC_C_TRAVEL_M          as Travel;
+  expose ZBC_C_BOOKING_M         as Booking;
+  expose ZBC_C_DMO_ATTACH        as Attachment;
+  expose /DMO/I_Agency           as Agency;
+  expose /DMO/I_Customer         as Customer;
+  expose I_Currency              as Currency;
+  expose /DMO/I_Travel_Status_VH as Status;
+}
